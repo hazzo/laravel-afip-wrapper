@@ -26,7 +26,7 @@ class AfipAuth
      *
      * @var string
      */
-    protected $access_ticket;
+    protected $accessTicket;
 
     /**
      * AfipAuth constructor.
@@ -46,7 +46,7 @@ class AfipAuth
             $ret = $wsaa->loginCms(new loginCms($tra));
 
             // Response access ticket accessible for class
-            $this->access_ticket = $ret->loginCmsReturn;
+            $this->accessTicket = $ret->loginCmsReturn;
 
         } else {
             var_dump('Ticket Request Access error. Could not trim XML.');
@@ -61,42 +61,42 @@ class AfipAuth
      */
     function trimResponse()
     {
-        $ta = $this->access_ticket;
-        $trimmed_response = [];
+        $ta = $this->accessTicket;
+        $trimmedResponse = [];
 
         if (trim($ta) <> '') {
             $xml = new SimpleXMLElement($ta);
             foreach ($xml as $element) {
                 foreach ($element as $key => $val) {
                     if ($key == 'source') {
-                        $trimmed_response['vSource'] = (String)$val;
+                        $trimmedResponse['vSource'] = (String)$val;
                     }
                     if ($key == 'destination') {
-                        $trimmed_response['vDestination'] = (String)$val;
+                        $trimmedResponse['vDestination'] = (String)$val;
                     }
                     if ($key == 'uniqueId') {
-                        $trimmed_response['vUniqueID'] = (String)$val;
+                        $trimmedResponse['vUniqueID'] = (String)$val;
                     }
                     if ($key == 'generationTime') {
-                        $trimmed_response['vGenerationTime'] = (String)$val;
+                        $trimmedResponse['vGenerationTime'] = (String)$val;
                     }
                     if ($key == 'expirationTime') {
-                        $trimmed_response['vExpirationTime'] = (String)$val;
+                        $trimmedResponse['vExpirationTime'] = (String)$val;
                     }
                     if ($key == 'token') {
-                        $trimmed_response['$vToken'] = (String)$val;
+                        $trimmedResponse['vToken'] = (String)$val;
                     }
                     if ($key == 'sign') {
-                        $trimmed_response['vSign'] = (String)$val;
+                        $trimmedResponse['vSign'] = (String)$val;
                     }
                 }
             }
 
-            var_dump($trimmed_response);
-
         } else {
             var_dump('Ticket Access error. Could no trim XML');
         }
+
+        return $trimmedResponse;
     }
 
 }
