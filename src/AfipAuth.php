@@ -29,6 +29,13 @@ class AfipAuth
     protected $accessTicket;
 
     /**
+     * Given CUIT.
+     *
+     * @var string
+     */
+    protected $cuit;
+
+    /**
      * AfipAuth constructor.
      * Get Ticket Request Access in XML/CMS/BASE64
      * @param $tra

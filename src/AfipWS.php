@@ -1,40 +1,65 @@
 <?php
 namespace hazzo\LaravelAfipWrapper;
 
+use Carbon\Carbon;
+
 Class AfipWs {
 
     /**
      * Auth token.
      * @var string
      */
-    protected $token;
+    public $token;
 
     /**
      * Auth sign.
      * @var string
      */
-    protected $sign;
+    public $sign;
+
+    /**
+     * Auth cuit.
+     * @var string
+     */
+    public $cuit;
 
     /**
      * AfipWs constructor.
-     * @param $tra
      */
-    function __construct($tra)
+    function __construct()
     {
+
+    }
+
+    function generateLTR($cuit, $cn, $id, $privateKey, $pemCert, $genTime = null, $expTime = null) {
+        $ltr = new AfipLTR();
+
+        if(!$genTime || !$expTime) {
+            $today = Carbon::now();
+            $genTime = $today->toIso8601String();
+            $expTime = $today->addHours(24)->toIso8601String();
+        }
+
+        $ltr->create($cuit, $cn, $id, $genTime, $expTime)
+            ->validate()
+            ->save()
+            ->sign($privateKey,  $pemCert)
+            ->encode();
+
+        $this->cuit = $cuit;
+
+        return $ltr->tra;
+    }
+
+    function generateTRA($tra) {
         $auth = new AfipAuth($tra);
         $authData = $auth->trimResponse();
 
         // Get used variables
         $this->token = $authData['vToken'];
         $this->sign = $authData['vSign'];
-    }
 
-
-    /**
-     * Return token for TRA Auth
-     */
-    function token() {
-        return $this->token;
+        return $this;
     }
 
 }
