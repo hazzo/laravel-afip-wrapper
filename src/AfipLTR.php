@@ -3,9 +3,16 @@
 namespace hazzo\LaravelAfipWrapper;
 
 use DOMDocument;
+use Dotenv\Dotenv;
 
 class AfipLTR
 {
+    /**
+     * Temporary folder dir.
+     * @var DOMDocument
+     */
+    protected $tempFolder;
+
     /**
      * DOMDocument element.
      * @var DOMDocument
@@ -23,7 +30,10 @@ class AfipLTR
      */
     function __construct()
     {
-
+        $dotEnv = new Dotenv($_SERVER['DOCUMENT_ROOT']);
+        $dotEnv->load();
+        $this->tempFolder = $_SERVER['DOCUMENT_ROOT'] . ((strlen(getenv('AFIP_TEMP_FOLDER')) > 0) ? getenv('AFIP_TEMP_FOLDER') : '/temp/');
+        var_dump($this->tempFolder);
     }
 
 
@@ -62,7 +72,7 @@ class AfipLTR
      * Validate DOMDocument XML
      */
     function validate() {
-        if (!$this->domDocument->schemaValidate('./src/temp/LoginTicketRequest.xsd')) {
+        if (!$this->domDocument->schemaValidate(__DIR__ . '/LoginTicketRequest.xsd')) {
             print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
         }
         return $this;
@@ -73,7 +83,7 @@ class AfipLTR
      * @return $this
      */
     function save() {
-        $this->domDocument->save("./src/temp/LoginTicketRequest.xml");
+        $this->domDocument->save($this->tempFolder . "LoginTicketRequest.xml");
         return $this;
     }
 
@@ -84,7 +94,7 @@ class AfipLTR
      * @return $this
      */
     function sign($privateKey, $pemCrt) {
-        exec('openssl cms -sign -in ./src/temp/LoginTicketRequest.xml -nodetach -inkey '. $privateKey .' -signer '. $pemCrt .' -out ./src/temp/LoginTicketRequest.xml.cms -outform DER');
+        exec('openssl cms -sign -in ' . $this->tempFolder . 'LoginTicketRequest.xml -nodetach -inkey '. $privateKey .' -signer '. $pemCrt .' -out ' . $this->tempFolder . 'LoginTicketRequest.xml.cms -outform DER');
         return $this;
     }
 
@@ -92,8 +102,8 @@ class AfipLTR
      * @return $this
      */
     function encode() {
-        exec('openssl enc -base64 -in ./src/temp/LoginTicketRequest.xml.cms -out ./src/temp/LoginTicketRequest.xml.cms.base64');
-        $this->tra = file_get_contents('./src/temp/LoginTicketRequest.xml.cms.base64');
+        exec('openssl enc -base64 -in '. $this->tempFolder . 'LoginTicketRequest.xml.cms -out ' . $this->tempFolder . 'LoginTicketRequest.xml.cms.base64');
+        $this->tra = file_get_contents($this->tempFolder . 'LoginTicketRequest.xml.cms.base64');
         return $this;
     }
 }

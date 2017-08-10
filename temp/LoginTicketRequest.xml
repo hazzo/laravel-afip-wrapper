@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<loginTicketRequest version="1.0"><header><source>SERIALNUMBER=CUIT 20109625834, CN=apitest</source><destination>cn=wsaahomo,o=afip,c=ar,serialNumber=CUIT 33693450239</destination><uniqueId>1</uniqueId><generationTime>2017-08-10T10:37:12+00:00</generationTime><expirationTime>2017-08-11T10:37:12+00:00</expirationTime></header><service>wsfe</service></loginTicketRequest>
