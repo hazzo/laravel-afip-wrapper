@@ -13,11 +13,10 @@
       "psr-4": {
         "hazzo\\LaravelAfipWrapper\\": "src/"
       },
-      "classmap": ["src/loginCms", "src/electronicInvoice"]
+      "classmap": ["src/LoginCms", "src/ElectronicInvoice"]
     },
     "minimum-stability": "dev",
     "require": {
-        "illuminate/support": "^5.1",
-        "vlucas/phpdotenv": "^2.4"
+        "illuminate/support": "^5.1"
     }
 }

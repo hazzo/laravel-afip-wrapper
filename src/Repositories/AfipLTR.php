@@ -1,15 +1,14 @@
 <?php
 
-namespace hazzo\LaravelAfipWrapper;
+namespace hazzo\LaravelAfipWrapper\repositories;
 
 use DOMDocument;
-use Dotenv\Dotenv;
 
 class AfipLTR
 {
     /**
      * Temporary folder dir.
-     * @var DOMDocument
+     * @var string
      */
     protected $tempFolder;
 
@@ -30,10 +29,9 @@ class AfipLTR
      */
     function __construct()
     {
-        $dotEnv = new Dotenv($_SERVER['DOCUMENT_ROOT']);
-        $dotEnv->load();
-        $this->tempFolder = $_SERVER['DOCUMENT_ROOT'] . ((strlen(getenv('AFIP_TEMP_FOLDER')) > 0) ? getenv('AFIP_TEMP_FOLDER') : '/temp/');
-        var_dump($this->tempFolder);
+        // Get web service config
+        $config = new AfipConfig();
+        $this->tempFolder = $config->tempFolder;
     }
 
 

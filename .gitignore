@@ -2,4 +2,8 @@ vendor/
 composer.lock
 .idea
 .DS_Store
+index.php
+AfipPrivateKey.key
+MyPEMKey.crt
+temp/
 TODO.md

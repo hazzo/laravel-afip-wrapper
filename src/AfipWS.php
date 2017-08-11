@@ -2,6 +2,9 @@
 namespace hazzo\LaravelAfipWrapper;
 
 use Carbon\Carbon;
+use hazzo\LaravelAfipWrapper\repositories\AfipAuth;
+use hazzo\LaravelAfipWrapper\repositories\AfipConfig;
+use hazzo\LaravelAfipWrapper\repositories\AfipLTR;
 
 Class AfipWs {
 
@@ -51,8 +54,12 @@ Class AfipWs {
         return $ltr->tra;
     }
 
-    function generateTRA($tra) {
-        $auth = new AfipAuth($tra);
+    /**
+     * @param $ltr
+     * @return $this
+     */
+    function generateTRA($ltr) {
+        $auth = new AfipAuth($ltr);
         $authData = $auth->trimResponse();
 
         // Get used variables

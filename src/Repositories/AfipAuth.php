@@ -1,6 +1,6 @@
 <?php
 
-namespace hazzo\LaravelAfipWrapper;
+namespace hazzo\LaravelAfipWrapper\repositories;
 
 use loginCms;
 use LoginCMSService;
@@ -39,17 +39,20 @@ class AfipAuth
      * AfipAuth constructor.
      * Get Ticket Request Access in XML/CMS/BASE64
      * @param $tra
+     * @param array $options
      */
-    function __construct($tra)
+    function __construct($tra, $options = array())
     {
-
         if (trim($tra) <> '') {
 
             // Make tra accessible by class
             $this->tra = $tra;
 
+            // Get web service config
+            $config = new AfipConfig();
+
             // Use SoapClient methods
-            $wsaa = new LoginCMSService();
+            $wsaa = new LoginCMSService($options, $config->env);
             $ret = $wsaa->loginCms(new loginCms($tra));
 
             // Response access ticket accessible for class
@@ -58,7 +61,6 @@ class AfipAuth
         } else {
             var_dump('Ticket Request Access error. Could not trim XML.');
         }
-
     }
 
     /**
