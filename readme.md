@@ -5,7 +5,7 @@ AFIP technical documentation for their Web Service [AFIP Web Service](http://www
 
 ## Installation
 
-type in console:
+Type in your terminal:
 
 ```
 composer require hazzo/LaravelAfipWrapper
