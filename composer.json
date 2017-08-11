@@ -1,5 +1,5 @@
 {
-    "name": "hazzo/LaravelAfipWrapper",
+    "name": "hazzo/laravel-afip-wrapper",
     "description": "Afip Web Service wrapper for Laravel",
     "keywords": ["Afip", "AfipWS", "Afip Web service", "laravel","package"],
     "license": "MIT",
