@@ -1,6 +1,6 @@
 <?php
 
-namespace hazzo\LaravelAfipWrapper\repositories;
+namespace hazzo\LaravelAfipWrapper\Repositories;
 
 use loginCms;
 use LoginCMSService;

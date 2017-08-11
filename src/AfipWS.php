@@ -3,7 +3,6 @@ namespace hazzo\LaravelAfipWrapper;
 
 use Carbon\Carbon;
 use hazzo\LaravelAfipWrapper\repositories\AfipAuth;
-use hazzo\LaravelAfipWrapper\repositories\AfipConfig;
 use hazzo\LaravelAfipWrapper\repositories\AfipLTR;
 
 Class AfipWs {
