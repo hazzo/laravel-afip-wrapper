@@ -22,7 +22,7 @@ class AfipLTR
      * LoginTicketRequest signed & coded
      * @var DOMDocument
      */
-    public $tra;
+    public $ltr;
 
     /**
      * AfipLTR constructor.
@@ -101,7 +101,7 @@ class AfipLTR
      */
     function encode() {
         exec('openssl enc -base64 -in '. $this->tempFolder . 'LoginTicketRequest.xml.cms -out ' . $this->tempFolder . 'LoginTicketRequest.xml.cms.base64');
-        $this->tra = file_get_contents($this->tempFolder . 'LoginTicketRequest.xml.cms.base64');
+        $this->ltr = file_get_contents($this->tempFolder . 'LoginTicketRequest.xml.cms.base64');
         return $this;
     }
 }

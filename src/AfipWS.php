@@ -50,7 +50,7 @@ Class AfipWs {
 
         $this->cuit = $cuit;
 
-        return $ltr->tra;
+        return $ltr->ltr;
     }
 
     /**
