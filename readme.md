@@ -27,20 +27,19 @@ Let's add the facade in the bottom of the same file in aliases.
     )
 ```
     
-Publish the package's configuration file to the application's own config directory
+Publish the package configuration file.
 
 ```
-php artisan vendor:publish --provider="Edujugon\Laradoo\Providers\OdooServiceProvider" --tag="config"
+php artisan vendor:publish"
 ```
 
 ### Configuration
 
-After publishing the package config file, the base configuration for laradoo package is located in config/laradoo.php
+Config file options:
 
-
-Also, you can dynamically update those values calling the available setter methods:
-
-`host($url)`, `username($username)`, `password($password)`, `db($name)`, `apiSuffix($name)`
-
+| Option            | Default      | Values     |
+| :---------------      | :-------  | :--------- |
+|  `afipTempFolder`     |  '' (Automatically the package will choose */temp* as folder in root directory)    | Any string. No need to get full root, package attaches global variable `$_SERVER['DOCUMENT_ROOT']` |
+|  `afipEnvironment`    | '' (Automatically the package will choose *DEV* environment) | To options `DEV` or `PROD`, for homologation and production endpoints for AFIP Web Service. |
 
 ##  Usage samples

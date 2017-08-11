@@ -1,6 +1,6 @@
 <?php
 
-namespace hazzo\LaravelAfipWrapper\facade;
+namespace hazzo\LaravelAfipWrapper\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

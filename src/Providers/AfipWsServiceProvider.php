@@ -1,4 +1,5 @@
 <?php
+namespace hazzo\LaravelAfipWrapper\Providers;
 
 use hazzo\LaravelAfipWrapper\AfipWs;
 use Illuminate\Support\ServiceProvider;
@@ -25,7 +26,7 @@ class AfipWsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(AfipWs::class, function ($app) {
+        $this->app->bind(AfipWs::class, function ($app) {
             return new AfipWs();
         });
     }
