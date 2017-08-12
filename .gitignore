@@ -1,6 +1,7 @@
 vendor/
 composer.lock
 .idea
+.env
 .DS_Store
 index.php
 AfipPrivateKey.key
