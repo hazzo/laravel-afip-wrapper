@@ -30,7 +30,7 @@ Let's add the facade in the bottom of the same file in aliases.
 Publish the package configuration file.
 
 ```
-php artisan vendor:publish"
+php artisan vendor:publish
 ```
 
 ### Configuration
