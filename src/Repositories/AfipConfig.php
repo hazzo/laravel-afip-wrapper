@@ -44,7 +44,7 @@ class AfipConfig
         if(function_exists('base_path')) {
             $this->tempFolder = ((strlen($config['afipTempFolder']) > 0) ? $config['afipTempFolder'] : base_path() . '/temp/');
         } else {
-            $this->tempFolder = ((strlen($config['afipTempFolder']) > 0) ? $_SERVER['DOCUMENT_ROOT'] . $config['afipTempFolder'] : '/temp/');
+            $this->tempFolder = ((strlen($config['afipTempFolder']) > 0) ? $config['afipTempFolder'] : $_SERVER['DOCUMENT_ROOT'] . '/temp/');
         }
 
         return $this;
