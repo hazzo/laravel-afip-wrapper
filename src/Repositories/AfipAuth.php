@@ -19,7 +19,7 @@ class AfipAuth
      *
      * @var string
      */
-    protected $tra;
+    protected $ltr;
 
     /**
      * Response to Login CMS method.
@@ -38,22 +38,22 @@ class AfipAuth
     /**
      * AfipAuth constructor.
      * Get Ticket Request Access in XML/CMS/BASE64
-     * @param $tra
+     * @param $ltr
      * @param array $options
      */
-    function __construct($tra, $options = array())
+    function __construct($ltr, $options = array())
     {
-        if (trim($tra) <> '') {
+        if (trim($ltr) <> '') {
 
             // Make tra accessible by class
-            $this->tra = $tra;
+            $this->tra = $ltr;
 
             // Get web service config
             $config = new AfipConfig();
 
             // Use SoapClient methods
             $wsaa = new LoginCMSService($options, $config->env);
-            $ret = $wsaa->loginCms(new loginCms($tra));
+            $ret = $wsaa->loginCms(new loginCms($ltr));
 
             // Response access ticket accessible for class
             $this->accessTicket = $ret->loginCmsReturn;

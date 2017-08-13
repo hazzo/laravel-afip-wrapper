@@ -41,7 +41,11 @@ class AfipConfig
         }
 
         // Set AFIP temp folder for xml validation files
-        $this->tempFolder = $_SERVER['DOCUMENT_ROOT'] . ((strlen($config['afipTempFolder']) > 0) ? $config['afipTempFolder'] : '/temp/');
+        if(function_exists('base_path')) {
+            $this->tempFolder = ((strlen($config['afipTempFolder']) > 0) ? $config['afipTempFolder'] : base_path() . '/temp/');
+        } else {
+            $this->tempFolder = ((strlen($config['afipTempFolder']) > 0) ? $_SERVER['DOCUMENT_ROOT'] . $config['afipTempFolder'] : '/temp/');
+        }
 
         return $this;
     }

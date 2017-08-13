@@ -39,7 +39,7 @@ Config file options:
 
 | Option            | Default      | Values     |
 | :---------------      | :-------  | :--------- |
-|  `afipTempFolder`     |  '' (Automatically the package will choose */temp* as folder in root directory)    | Any string. No need to get full root, package attaches global variable `$_SERVER['DOCUMENT_ROOT']` |
+|  `afipTempFolder`     |  '' (Automatically the package will choose */temp* as folder in root directory)    | Any string. |
 |  `afipEnvironment`    | '' (Automatically the package will choose *DEV* environment) | To options `DEV` or `PROD`, for homologation and production endpoints for AFIP Web Service. |
 
 ##  Usage samples
