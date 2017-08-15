@@ -21,20 +21,15 @@ class LoginCMSService extends \SoapClient
      * @param string $wsdl The wsdl file to use
      * @access public
      */
-    public function __construct(array $options = array(), $wsdl)
+    public function __construct(array $options = array(), $wsdl = 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl')
     {
-
-        if ($wsdl === null) {
-            $wsdl = 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl';
+      foreach (self::$classmap as $key => $value) {
+        if (!isset($options['classmap'][$key])) {
+          $options['classmap'][$key] = $value;
         }
+      }
 
-        foreach (self::$classmap as $key => $value) {
-            if (!isset($options['classmap'][$key])) {
-                $options['classmap'][$key] = $value;
-            }
-        }
-
-        parent::__construct($wsdl, $options);
+      parent::__construct($wsdl, $options);
     }
 
     /**

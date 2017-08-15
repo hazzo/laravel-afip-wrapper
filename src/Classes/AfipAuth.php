@@ -39,9 +39,8 @@ class AfipAuth
      * AfipAuth constructor.
      * Get Ticket Request Access in XML/CMS/BASE64
      * @param $ltr
-     * @param array $options
      */
-    function __construct($ltr, $options = array())
+    function __construct($ltr)
     {
         if (trim($ltr) <> '') {
 
@@ -52,7 +51,7 @@ class AfipAuth
             $config = new AfipConfig();
 
             // Use SoapClient methods
-            $wsaa = new LoginCMSService($options, $config->env);
+            $wsaa = new LoginCMSService();
             $ret = $wsaa->loginCms(new loginCms($ltr));
 
             // Response access ticket accessible for class
