@@ -56,7 +56,7 @@ class AfipLTR
     {
         // Get web service config
         $config = new AfipConfig();
-        $this->tempFolder = $config->tempFolder;
+        $this->tempFolder = $config->folder();
     }
 
 

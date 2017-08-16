@@ -1,5 +1,7 @@
 <?php
 
+namespace hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev;
+
 class loginCms
 {
 

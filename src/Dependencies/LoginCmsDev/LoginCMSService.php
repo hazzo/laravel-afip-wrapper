@@ -1,7 +1,9 @@
 <?php
 
-include_once('LoginCms.php');
-include_once('LoginCmsResponse.php');
+namespace hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev;
+
+include_once('loginCms.php');
+include_once('loginCmsResponse.php');
 include_once('LoginFault.php');
 
 class LoginCMSService extends \SoapClient
@@ -12,9 +14,9 @@ class LoginCMSService extends \SoapClient
      * @access private
      */
     private static $classmap = array(
-        'loginCms' => '\loginCms',
-        'loginCmsResponse' => '\loginCmsResponse',
-        'LoginFault' => '\LoginFault');
+      'loginCms' => '\hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev\loginCms',
+      'loginCmsResponse' => '\hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev\loginCmsResponse',
+      'LoginFault' => '\hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev\LoginFault');
 
     /**
      * @param array $options A array of config values
@@ -28,18 +30,18 @@ class LoginCMSService extends \SoapClient
           $options['classmap'][$key] = $value;
         }
       }
-
+      
       parent::__construct($wsdl, $options);
     }
 
     /**
-     * @param loginCms $parameters
+     * @param \hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev\loginCms $parameters
      * @access public
-     * @return loginCmsResponse
+     * @return \hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev\loginCmsResponse
      */
     public function loginCms(loginCms $parameters)
     {
-        return $this->__soapCall('loginCms', array($parameters));
+      return $this->__soapCall('loginCms', array($parameters));
     }
 
 }

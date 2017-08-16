@@ -1,4 +1,4 @@
-<?php
+<?php namespace hazzo\LaravelAfipWrapper\Dependencies\LoginCmsDev;
 
 class LoginFault
 {

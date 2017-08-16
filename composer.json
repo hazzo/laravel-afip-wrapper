@@ -13,7 +13,7 @@
       "psr-4": {
         "hazzo\\LaravelAfipWrapper\\": "src/"
       },
-      "classmap": ["src/LoginCms", "src/ElectronicInvoice"]
+      "classmap": ["src/ElectronicInvoiceDev", "src/Dependencies/LoginCmsDev", "src/Dependencies/LoginCmsProd"]
     },
     "minimum-stability": "dev",
     "require": {

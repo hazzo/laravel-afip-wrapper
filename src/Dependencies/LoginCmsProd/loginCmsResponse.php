@@ -1,4 +1,5 @@
 <?php
+namespace hazzo\LaravelAfipWrapper\Dependencies\LoginCmsProd;
 
 class loginCmsResponse
 {

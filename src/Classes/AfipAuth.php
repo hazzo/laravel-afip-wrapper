@@ -2,10 +2,7 @@
 
 namespace hazzo\LaravelAfipWrapper\Classes;
 
-use loginCms;
-use LoginCMSService;
 use SimpleXMLElement;
-
 
 /**
  * Class AfipAuth
@@ -49,11 +46,9 @@ class AfipAuth
 
             // Get web service config
             $config = new AfipConfig();
+            $login = $config->login($ltr);
 
-            // Use SoapClient methods
-            $wsaa = new LoginCMSService();
-            $ret = $wsaa->loginCms(new loginCms($ltr));
-
+            $ret = $login['service']->loginCms($login['cms']);
             // Response access ticket accessible for class
             $this->accessTicket = $ret->loginCmsReturn;
 
