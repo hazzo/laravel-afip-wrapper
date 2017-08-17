@@ -37,7 +37,7 @@ Class AfipWs {
      * @param array $options
      * @return \DOMDocument
      */
-    function generateLTR(array $options = array()) {
+    public function generateLTR(array $options = array()) {
 
         if(empty($options)) {
             var_dump('No options given');
@@ -63,7 +63,7 @@ Class AfipWs {
         $ltr->create($cuit, $cn, $id, $genTime, $expTime)
             ->validate()
             ->save($id)
-            ->sign($privateKey,  $pemCert)
+            ->sign($privateKey, $pemCert)
             ->encode();
 
         $this->cuit = $cuit;
@@ -75,7 +75,7 @@ Class AfipWs {
      * @param $ltr
      * @return $this
      */
-    function generateTRA($ltr) {
+    public function generateTRA($ltr) {
         $auth = new AfipAuth($ltr);
         $authData = $auth->trimResponse();
 
