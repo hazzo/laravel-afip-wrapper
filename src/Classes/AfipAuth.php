@@ -44,7 +44,7 @@ class AfipAuth
             // Make tra accessible by class
             $this->tra = $ltr;
 
-            // Get web service config
+            // Get web service config and get service instances
             $config = new AfipConfig();
             $login = $config->login($ltr);
 
