@@ -40,7 +40,7 @@ Config file options:
 | Option            | Default      | Values     |
 | :---------------      | :-------  | :--------- |
 |  `afipTempFolder`     |  '' (Automatically the package will choose */temp* as folder in root directory)    | Any string. Ex.:  `storage_path('app/afip')`|
-|  `afipEnvironment`    | '' (Automatically the package will choose *DEV* environment) | To options `DEV` or `PROD`, for homologation and production endpoints for AFIP Web Service. |
+|  `afipEnvironment`    | '' (Automatically the package will choose *DEV* environment) | Two options `DEV` or `PROD`, for homologation and production endpoints for AFIP Web Service. |
 
 ##  Usage samples
 
