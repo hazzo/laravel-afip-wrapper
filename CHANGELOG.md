@@ -1,5 +1,11 @@
 #   ChangeLog
 
+## V1.0.0-beta2
+
+###### Changes
+
+* Code refactored. `AfpiConfig` class handles config environment and instantiates needed methods for *PROD* or *DEV*. 
+
 ## V1.0.0-beta1
 
 ### New
