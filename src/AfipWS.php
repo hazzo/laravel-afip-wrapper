@@ -39,8 +39,9 @@ Class AfipWs {
      */
     public function generateLTR(array $options = array()) {
 
+        // Check options
         if(empty($options)) {
-            var_dump('No options given');
+            return json_encode([ 'message' => 'No options given']);
         }
 
         // Map array options to variables

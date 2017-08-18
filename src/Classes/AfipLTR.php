@@ -52,7 +52,7 @@ class AfipLTR
     /**
      * AfipLTR constructor.
      */
-    function __construct()
+    public function __construct()
     {
         // Get web service config
         $config = new AfipConfig();
@@ -71,8 +71,13 @@ class AfipLTR
      * @param $expirationTime
      * @return $this
      */
-    function create($cuit, $cn, $id, $generationTime, $expirationTime)
+    public function create($cuit, $cn, $id, $generationTime, $expirationTime)
     {
+
+        //Check fundamentals
+        if(!($cuit && $cn && $id)) {
+            return json_encode(['message' => 'Parameter missing to create LoginRequest']);
+        }
 
         $dom = new DOMDocument('1.0', 'utf-8');
         $loginRequestXML = $dom->createElement('loginTicketRequest');
@@ -93,9 +98,9 @@ class AfipLTR
     /**
      * Validate DOMDocument XML
      */
-    function validate() {
+    public function validate() {
         if (!$this->domDocument->schemaValidate(__DIR__ . '/LoginTicketRequest.xsd')) {
-            print '<b>DOMDocument::schemaValidate() Generated Errors!</b>';
+            return json_encode(['message' => 'DOMDocument::schemaValidate() Generated Errors!']);
         }
         return $this;
     }
@@ -105,7 +110,7 @@ class AfipLTR
      * @param $unique
      * @return $this
      */
-    function save($unique = false) {
+    public function save($unique = false) {
         $filename = 'LoginTicketRequest.xml';
         if($unique) {
             $filename = 'LoginTicketRequest_' . $unique . '.xml';
@@ -123,7 +128,7 @@ class AfipLTR
      * @param $pemCrt
      * @return $this
      */
-    function sign($privateKey, $pemCrt) {
+    public function sign($privateKey, $pemCrt) {
         $outputFilename = 'LoginTicketRequest.xml.cms';
         if($this->unique) {
             $outputFilename = 'LoginTicketRequest_'. $this->unique .'.xml.cms';
@@ -138,7 +143,7 @@ class AfipLTR
     /**
      * @return $this
      */
-    function encode() {
+    public function encode() {
         $outputFilename = 'LoginTicketRequest.xml.cms.base64';
         if($this->unique) {
             $outputFilename = 'LoginTicketRequest_'. $this->unique .'.xml.cms.base64';

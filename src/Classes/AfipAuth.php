@@ -37,7 +37,7 @@ class AfipAuth
      * Get Ticket Request Access in XML/CMS/BASE64
      * @param $ltr
      */
-    function __construct($ltr)
+    public function __construct($ltr)
     {
         if (trim($ltr) <> '') {
 
@@ -53,8 +53,10 @@ class AfipAuth
             $this->accessTicket = $ret->loginCmsReturn;
 
         } else {
-            var_dump('Ticket Request Access error. Could not trim XML.');
+            return json_encode(['message' => 'Ticket Request Access error. Could not trim XML.']);
         }
+
+        return $this;
     }
 
     /**
@@ -62,7 +64,7 @@ class AfipAuth
      * Trim XML response to get variables
      *
      */
-    function trimResponse()
+    public function trimResponse()
     {
         $ta = $this->accessTicket;
         $trimmedResponse = [];
@@ -96,7 +98,7 @@ class AfipAuth
             }
 
         } else {
-            var_dump('Ticket Access error. Could no trim XML');
+            return json_encode(['message' => 'Ticket Access error. Could no trim XML']);
         }
 
         return $trimmedResponse;
